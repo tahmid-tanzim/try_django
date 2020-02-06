@@ -1,0 +1,3 @@
+# Try Django
+
+pipenv shell
