@@ -4,7 +4,13 @@ from rest_framework.response import Response
 
 
 from .models import Poll, Choice
-from .serializers import PollSerializer, ChoiceSerializer, VoteSerializer
+from .serializers import PollSerializer, ChoiceSerializer, VoteSerializer, UserSerializer
+
+
+class UserCreate(generics.CreateAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = UserSerializer
 
 
 class PollList(generics.ListCreateAPIView):
@@ -27,7 +33,6 @@ class ChoiceList(generics.ListCreateAPIView):
 
 
 class CreateVote(APIView):
-    # serializer_class = VoteSerializer
 
     def post(self, request, pk, choice_pk):
         voted_by = request.data.get("voted_by")
