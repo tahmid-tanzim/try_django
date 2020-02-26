@@ -24,6 +24,7 @@ class TestPoll(APITestCase):
         return User.objects.create_user('test', email='testuser@test.com', password='test101')
 
     def test_list(self):
+        # APIRequestFactory
         request = self.factory.get(self.uri,
                                    HTTP_AUTHORIZATION='Token {}'.format(self.token.key))
         request.user = self.user
@@ -33,6 +34,7 @@ class TestPoll(APITestCase):
                          .format(response.status_code))
 
     def test_list2(self):
+        # APIClient
         self.client.login(username="test", password="test101")
         response = self.client.get(self.uri)
 
@@ -40,3 +42,15 @@ class TestPoll(APITestCase):
                          'Expected Response Code 200, received {0} instead.'
                          .format(response.status_code))
 
+    def test_create(self):
+        self.client.login(username="test", password="test101")
+
+        params = {
+            "question": "How are you?",
+            "created_by": 1
+        }
+
+        response = self.client.post(self.uri, params)
+        self.assertEqual(response.status_code, 201,
+                         'Expected Response Code 201, received {0} instead.'
+                         .format(response.status_code))
