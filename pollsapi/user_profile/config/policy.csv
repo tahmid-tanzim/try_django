@@ -1,0 +1,4 @@
+p, alice, address_data, read
+p, bob, financial_data, write
+p, tanzim, financial_data, read
+p, tanzim, financial_data, write

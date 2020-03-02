@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'polls',
+    'user_profile',
     'rest_framework.authtoken',
     'rest_framework_swagger',
 ]
@@ -77,8 +78,8 @@ WSGI_APPLICATION = 'pollsapi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tahmid.tanzim',
-        'USER': 'tahmid.tanzim',
+        'NAME': 'tanzim',
+        'USER': 'tanzim',
         'PASSWORD': 'root101',
         'HOST': 'localhost',
         'PORT': '5432',
