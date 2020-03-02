@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e2aa5b9e8a5df1f478b44b5f6ba85f1f4e97b35f93d4ccfc9a108e5bc1597641"
+            "sha256": "7dad8b8857eba70ed4f9e156bfe2dd813834fae001a9507bc4335fcfc4e3154c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -23,6 +23,14 @@
             ],
             "index": "pypi",
             "version": "==0.8.4"
+        },
+        "casbin-sqlalchemy-adapter": {
+            "hashes": [
+                "sha256:0db2649974c64a701a5448b8c4be0dc02d889a3ab7a43c00476a9bb8848f29ee",
+                "sha256:3e1724527efcef936ba0862793a9cc89fb1bb4480f60bf7be492b2e6468bc62d"
+            ],
+            "index": "pypi",
+            "version": "==0.1.0"
         },
         "certifi": {
             "hashes": [
@@ -200,6 +208,12 @@
                 "sha256:fc9051d249dd5512e541f20330a74592f7a65b2d62e18122ca89bf71f94db748"
             ],
             "version": "==3.17.0"
+        },
+        "sqlalchemy": {
+            "hashes": [
+                "sha256:64a7b71846db6423807e96820993fa12a03b89127d278290ca25c0b11ed7b4fb"
+            ],
+            "version": "==1.3.13"
         },
         "sqlparse": {
             "hashes": [

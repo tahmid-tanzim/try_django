@@ -1,6 +1,6 @@
-p, alice, address_data, read
-p, bob, financial_data, write
-r, superadmin, crime_data, write
-g, superadmin, tanzim
-p, tanzim, financial_data, read
-p, tanzim, financial_data, write
+p, alice, address_data , read, allow
+p, bob, financial_data, write, allow
+p, tanzim, crime_data, write, allow
+p, superadmin, financial_data, write, allow
+
+g, tanzim, superadmin

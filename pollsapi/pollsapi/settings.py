@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'pollsapi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'oauthdb',
-        'USER': 'farhan',
-        'PASSWORD': '1953',
+        'NAME': 'tanzim',
+        'USER': 'tanzim',
+        'PASSWORD': 'root101',
         'HOST': 'localhost',
         'PORT': '5432',
     }
