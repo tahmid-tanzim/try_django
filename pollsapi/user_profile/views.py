@@ -16,7 +16,7 @@ class Home(View):
 
         sub = "tanzim"  # the user that wants to access a resource.
         obj = "financial_data"  # the resource that is going to be accessed.
-        act = "read"  # the operation that the user performs on the resource.
+        act = "write"  # the operation that the user performs on the resource.
         # sub = "eve"  # the user that wants to access a resource.
         # obj = "data3"  # the resource that is going to be accessed.
         # act = "read"  # the operation that the user performs on the resource.
@@ -24,7 +24,7 @@ class Home(View):
         if self.e.enforce(sub, obj, act):
             roles = self.e.get_roles_for_user(sub)
             print("Roles for {} - ".format(sub), roles)
-            return JsonResponse({'message': "Wow!!, {} can {} {} on {}".format(sub, act, field, obj)}, status=200)
+            return JsonResponse({'message': "Wow!!, {} can {} {}".format(sub, act, obj)}, status=200)
         else:
             return JsonResponse({'message': "Sorry, {} cannot {} {}".format(sub, act, obj)}, status=404)
 
