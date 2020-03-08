@@ -10,11 +10,11 @@ from django.conf import settings
 
 class Home(View):
     model_conf = os.path.join(settings.BASE_DIR, 'user_profile/config/model.conf')
-    # policy = os.path.join(settings.BASE_DIR, 'user_profile/config/policy.csv')
-    # e = casbin.Enforcer(model_conf, policy)
+    policy = os.path.join(settings.BASE_DIR, 'user_profile/config/policy.csv')
+    e = casbin.Enforcer(model_conf, policy)
 
-    pg_adapter = Adapter('postgresql://tanzim:roo101@localhost:5432/tanzim')
-    e = casbin.Enforcer(model_conf, pg_adapter, True)
+    # pg_adapter = Adapter('postgresql://tanzim:roo101@localhost:5432/tanzim')
+    # e = casbin.Enforcer(model_conf, pg_adapter, True)
     # e.add_policy("alice", "address_data", "read", "allow")
     # e.add_policy("superadmin", "financial_data", "write", "allow")
 
@@ -30,8 +30,8 @@ class Home(View):
     def get(self, request, *args, **kwargs):
 
         sub = "tanzim"  # the user that wants to access a resource.
-        obj = "financial_data"  # the resource that is going to be accessed.
-        act = "read"  # the operation that the user performs on the resource.
+        obj = "crime_data"  # the resource that is going to be accessed.
+        act = "write"  # the operation that the user performs on the resource.
         # sub = "eve"  # the user that wants to access a resource.
         # obj = "data3"  # the resource that is going to be accessed.
         # act = "read"  # the operation that the user performs on the resource.
@@ -44,3 +44,20 @@ class Home(View):
             return JsonResponse({'message': "Sorry, {} cannot {} {}".format(sub, act, obj)}, status=404)
 
 
+class ACL:
+    model_conf = os.path.join(settings.BASE_DIR, 'user_profile/config/model.conf')
+    policy = os.path.join(settings.BASE_DIR, 'user_profile/config/policy.csv')
+    e = casbin.Enforcer(model_conf, policy)
+    e.enable_log(True)
+
+    def validation(self, user, data, action):
+        sub = user  # the user that wants to access a resource.
+        obj = data  # the resource that is going to be accessed.
+        act = action  # the op
+
+        if self.e.enforce(sub, obj, act):
+            # roles = self.e.get_roles_for_user(sub)
+            # print("Roles for {} - ".format(sub), roles)
+            return data
+        else:
+            return None

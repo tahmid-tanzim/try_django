@@ -1,6 +1,4 @@
-p, alice, address_data , read, allow
-p, bob, financial_data, write, allow
-p, tanzim, crime_data, write, allow
-p, superadmin, financial_data, write, allow
+p, superadmin, profile, name, 1, read, allow
+p, fahim, profile, name, *, read, allow
 
 g, tanzim, superadmin
