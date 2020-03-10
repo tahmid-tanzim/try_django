@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from django.contrib.auth import authenticate
 
+from drf_hal_json.views import HalCreateModelMixin
+
 from .models import Poll, Choice
 from .serializers import PollSerializer, ChoiceSerializer, VoteSerializer, UserSerializer
 
@@ -67,14 +69,14 @@ class CreateVote(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PollViewSet(viewsets.ModelViewSet):
-    queryset = Poll.objects.all()
+class PollViewSet(HalCreateModelMixin, viewsets.ModelViewSet):
     serializer_class = PollSerializer
+    queryset = Poll.objects.all()
 
-    def destroy(self, request, *args, **kwargs):
-        poll = Poll.objects.get(pk=self.kwargs["pk"])
-
-        if not request.user == poll.created_by:
-            raise PermissionDenied("You can not delete this poll.")
-        return super().destroy(request, *args, **kwargs)
+    # def destroy(self, request, *args, **kwargs):
+    #     poll = Poll.objects.get(pk=self.kwargs["pk"])
+    #
+    #     if not request.user == poll.created_by:
+    #         raise PermissionDenied("You can not delete this poll.")
+    #     return super().destroy(request, *args, **kwargs)
 

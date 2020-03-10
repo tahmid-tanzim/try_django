@@ -1,17 +1,19 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
+
+from drf_hal_json.serializers import HalModelSerializer
 
 from .models import Poll, Choice, Vote
 
 
-class VoteSerializer(serializers.ModelSerializer):
+class VoteSerializer(ModelSerializer):
     class Meta:
         model = Vote
         fields = '__all__'
 
 
-class ChoiceSerializer(serializers.ModelSerializer):
+class ChoiceSerializer(ModelSerializer):
     votes = VoteSerializer(many=True, required=False)
 
     class Meta:
@@ -19,7 +21,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PollSerializer(serializers.ModelSerializer):
+class PollSerializer(HalModelSerializer):
     choices = ChoiceSerializer(many=True, read_only=True, required=False)
 
     class Meta:
@@ -27,7 +29,7 @@ class PollSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'password')

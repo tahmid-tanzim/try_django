@@ -13,6 +13,8 @@ django-rest-swagger = "*"
 coreapi = "*"
 casbin = "==0.8.4"
 casbin-sqlalchemy-adapter = "==0.1.0"
+drf-hal-json = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"

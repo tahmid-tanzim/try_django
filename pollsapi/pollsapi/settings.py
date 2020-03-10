@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'user_profile',
     'rest_framework.authtoken',
     'rest_framework_swagger',
+    'drf_hal_json',
 ]
 
 MIDDLEWARE = [
@@ -123,11 +124,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework.authentication.TokenAuthentication',
+    #     'rest_framework.authentication.SessionAuthentication',
+    # ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
+    'DEFAULT_PAGINATION_CLASS': 'drf_hal_json.pagination.HalPageNumberPagination',
+    'DEFAULT_PARSER_CLASSES': ('drf_hal_json.parsers.JsonHalParser',),
+    'DEFAULT_RENDERER_CLASSES': (
+        'drf_hal_json.renderers.JsonHalRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+
+    # To make self links render as 'self' and not 'url', as per the HAL spec
+    'URL_FIELD_NAME': 'self',
 }
