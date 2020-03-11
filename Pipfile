@@ -15,6 +15,7 @@ casbin = "==0.8.4"
 casbin-sqlalchemy-adapter = "==0.1.0"
 drf-hal-json = "*"
 pyyaml = "*"
+requests2 = "==2.16.0"
 
 [requires]
 python_version = "3.7"

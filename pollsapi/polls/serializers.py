@@ -21,7 +21,7 @@ class ChoiceSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class PollSerializer(HalModelSerializer):
+class PollSerializer(ModelSerializer):
     choices = ChoiceSerializer(many=True, read_only=True, required=False)
 
     class Meta:

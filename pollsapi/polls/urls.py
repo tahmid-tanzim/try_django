@@ -11,7 +11,11 @@ router = DefaultRouter()
 router.register('polls', PollViewSet, base_name='polls')
 
 # schema_view = get_swagger_view(title='Polls API')
-# schema_view = get_schema_view(title="Polls API")
+# schema_view = get_schema_view(
+#     title="Polls API",
+#     description="Description of Polls API",
+#     version="0.0.1"
+# )
 
 urlpatterns = [
     path("users/", UserCreate.as_view(), name="user_create"),
@@ -21,7 +25,7 @@ urlpatterns = [
     path("polls-list/<int:pk>/", PollDetail.as_view(), name="polls_detail"),
     path("polls/<int:pk>/choices/", ChoiceList.as_view(), name="choice_list"),
     path("polls/<int:pk>/choices/<int:choice_pk>/vote/", CreateVote.as_view(), name="create_vote"),
-    # url(r'swagger-docs/', schema_view),
+    # path('schema', schema_view, name='coreapi-schema'),
     # path(r'docs/', include_docs_urls(title='Polls API')),
     # url('^schema$', schema_view),
 ]

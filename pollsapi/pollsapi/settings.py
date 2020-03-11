@@ -138,6 +138,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
 
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     # To make self links render as 'self' and not 'url', as per the HAL spec
     'URL_FIELD_NAME': 'self',
 }
